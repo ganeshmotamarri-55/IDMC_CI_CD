@@ -1,0 +1,113 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>ZbfUryzfYtjCtbd-gt-127249-2026-01-27T08:15:00.92824758Z::svc.xml</types1:EntryId>
+      <types1:Name>sc-GTM-Apis</types1:Name>
+      <types1:ParentFlowIds>ITjyRUDv2vSx0aa-gt-128232-2026-01-27T08:32:11.554493496Z::conn.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+businesssconnector</types1:MimeType>
+      <types1:Description>GTM (Oracle) Platform Api's</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>KulaNagaDeep.Chelamalasetti</types1:CreatedBy>
+      <types1:CreationDate>2026-01-27T08:15:01Z</types1:CreationDate>
+      <types1:ModifiedBy>KulaNagaDeep.Chelamalasetti</types1:ModifiedBy>
+      <types1:ModificationDate>2026-01-29T09:42:33Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>KulaNagaDeep.Chelamalasetti</types1:PublishedBy>
+      <types1:PublicationDate>2026-01-29T09:42:37Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connector/sc_GTM_Apis/sc_GTM_Apis_svcDef.xml</types1:PublishedContributionId>
+      <types1:Entry>
+         <businessConnector xmlns="http://schemas.informatica.com/socrates/data-services/2014/05/business-connector-model.xsd"
+                            agentOnly="false"
+                            debug="false"
+                            displayName="sc-GTM-Apis"
+                            label=""
+                            name="sc-GTM-Apis"
+                            uuid="36bfe0bb-8d95-49d9-a819-ce026e9e302c">
+            <description>GTM (Oracle) Platform Api's</description>
+            <tags/>
+            <connectionAttributes xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd">
+               <connectionAttribute description="baseURL"
+                                    label="baseURL"
+                                    masked="false"
+                                    name="baseURL"
+                                    required="true"
+                                    testWith="https://otmgtm-test-quakerhoughtongtm.otmgtm.us-ashburn-1.ocs.oraclecloud.com"
+                                    type="string"/>
+               <connectionAttribute description="Username"
+                                    label="Username"
+                                    masked="false"
+                                    name="Username"
+                                    required="true"
+                                    testWith="QHGTMTEST.INTEGRATION"
+                                    type="string"/>
+               <connectionAttribute description="Password&#xA;"
+                                    label="Password"
+                                    masked="true"
+                                    name="Password"
+                                    required="true"
+                                    testWith=""
+                                    type="string"/>
+            </connectionAttributes>
+            <actions>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Post_WMserlet_GTM"
+                       maxRedirects="100"
+                       name="Post_WMserlet_GTM"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input>
+                     <parameter description=""
+                                label=""
+                                name="i_Payload_Request"
+                                nogen="true"
+                                required="true"
+                                testWith="&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;&#xA;&lt;Transmission xmlns=&#34;http://xmlns.oracle.com/apps/otm/transmission/v6.4&#34;&gt;&#xA;      &lt;otm:TransmissionHeader xmlns:gtm=&#34;http://xmlns.oracle.com/apps/gtm/transmission/v6.4&#34; xmlns:otm=&#34;http://xmlns.oracle.com/apps/otm/transmission/v6.4&#34;&gt;&#xA;&lt;otm:UserName&gt;INTEGRATION&lt;/otm:UserName&gt;&#xA;&lt;otm:Password&gt;Changeme_001&lt;/otm:Password&gt;&#xA;&lt;otm:SenderTransmissionNo&gt;126029150050&lt;/otm:SenderTransmissionNo&gt;&#xA;&lt;otm:AckSpec&gt;&#xA;&lt;otm:ComMethodGid&gt;&#xA;&lt;otm:Gid&gt;&#xA;&lt;otm:Xid&gt;HTTPPOST&lt;/otm:Xid&gt;&#xA;&lt;/otm:Gid&gt;&#xA;&lt;/otm:ComMethodGid&gt;&#xA;&lt;otm:AckOption&gt;YES&lt;/otm:AckOption&gt;&#xA;&lt;otm:ContactGid&gt;&#xA;&lt;otm:Gid&gt;&#xA;&lt;otm:DomainName&gt;QHGTMTEST&lt;/otm:DomainName&gt;&#xA;&lt;otm:Xid&gt;INTEGRATION&lt;/otm:Xid&gt;&#xA;&lt;/otm:Gid&gt;&#xA;&lt;/otm:ContactGid&gt;&#xA;&lt;/otm:AckSpec&gt;&#xA;&lt;/otm:TransmissionHeader&gt;&#xA;   &lt;TransmissionBody&gt;&#xA;      &lt;GLogXMLElement&gt;&#xA;         &lt;gtm:GtmContact xmlns:otm=&#34;http://xmlns.oracle.com/apps/otm/transmission/v6.4&#34; xmlns:gtm=&#34;http://xmlns.oracle.com/apps/gtm/transmission/v6.4&#34;&gt;&#xA;            &lt;gtm:Contact&gt;&#xA;               &lt;otm:ContactGid&gt;&#xA;                  &lt;otm:Gid&gt;&#xA;                     &lt;otm:DomainName&gt;QHGTMTEST&lt;/otm:DomainName&gt;&#xA;                     &lt;otm:Xid&gt;616858_TEST_01&lt;/otm:Xid&gt;&#xA;                  &lt;/otm:Gid&gt;&#xA;               &lt;/otm:ContactGid&gt;&#xA;               &lt;otm:TransactionCode&gt;IU&lt;/otm:TransactionCode&gt;&#xA;               &lt;otm:LanguageSpoken&gt;English&lt;/otm:LanguageSpoken&gt;&#xA;               &lt;otm:IsPrimaryContact&gt;N&lt;/otm:IsPrimaryContact&gt;&#xA;               &lt;otm:LocationGid&gt;&#xA;                  &lt;otm:Gid&gt;&#xA;                     &lt;otm:DomainName&gt;QHGTMTEST&lt;/otm:DomainName&gt;&#xA;                     &lt;otm:Xid&gt;616858_TEST_01&lt;/otm:Xid&gt;&#xA;                  &lt;/otm:Gid&gt;&#xA;               &lt;/otm:LocationGid&gt;&#xA;               &lt;otm:CompanyName&gt;BOEING DISTRIBUTION SERVICES INC&lt;/otm:CompanyName&gt;&#xA;            &lt;/gtm:Contact&gt;&#xA;            &lt;gtm:TransactionCode&gt;IU&lt;/gtm:TransactionCode&gt;&#xA;            &lt;gtm:LocationRef&gt;&#xA;               &lt;otm:Location&gt;&#xA;                  &lt;otm:TransactionCode&gt;IU&lt;/otm:TransactionCode&gt;&#xA;                  &lt;otm:LocationGid&gt;&#xA;                     &lt;otm:Gid&gt;&#xA;                        &lt;otm:DomainName&gt;QHGTMTEST&lt;/otm:DomainName&gt;&#xA;                        &lt;otm:Xid&gt;616858_TEST_01&lt;/otm:Xid&gt;&#xA;                     &lt;/otm:Gid&gt;&#xA;                  &lt;/otm:LocationGid&gt;&#xA;                  &lt;otm:LocationName&gt;BOEING DISTRIBUTION SERVICES INC&lt;/otm:LocationName&gt;&#xA;                  &lt;otm:Address&gt;&#xA;                     &lt;otm:AddressLines&gt;&#xA;                        &lt;otm:SequenceNumber&gt;1&lt;/otm:SequenceNumber&gt;&#xA;                        &lt;otm:AddressLine&gt;10000 NW 15 TERRACE&lt;/otm:AddressLine&gt;&#xA;                     &lt;/otm:AddressLines&gt;&#xA;                     &lt;otm:AddressLines&gt;&#xA;                        &lt;otm:SequenceNumber&gt;2&lt;/otm:SequenceNumber&gt;&#xA;                         &lt;otm:AddressLine&gt;ADDRESS_LINE_2&lt;/otm:AddressLine&gt;&#xA;                     &lt;/otm:AddressLines&gt;&#xA;                     &lt;otm:AddressLines&gt;&#xA;                        &lt;otm:SequenceNumber&gt;3&lt;/otm:SequenceNumber&gt;&#xA;                              &lt;otm:AddressLine&gt;ADDRESS_LINE_3&lt;/otm:AddressLine&gt;&#xA;                     &lt;/otm:AddressLines&gt;&#xA;                     &lt;otm:AddressLines&gt;&#xA;                        &lt;otm:SequenceNumber&gt;4&lt;/otm:SequenceNumber&gt;&#xA;                              &lt;otm:AddressLine&gt;ADDRESS_LINE_4&lt;/otm:AddressLine&gt;&#xA;                     &lt;/otm:AddressLines&gt;&#xA;                     &lt;otm:City&gt;MIAMI&lt;/otm:City&gt;&#xA;                     &lt;otm:Province&gt;MIAMI-DADE&lt;/otm:Province&gt;&#xA;                     &lt;otm:ProvinceCode&gt;FL&lt;/otm:ProvinceCode&gt;&#xA;                     &lt;otm:PostalCode&gt;33172&lt;/otm:PostalCode&gt;&#xA;                     &lt;otm:CountryCode3Gid&gt;&#xA;                        &lt;otm:Gid&gt;&#xA;                           &lt;otm:Xid&gt;US&lt;/otm:Xid&gt;&#xA;                        &lt;/otm:Gid&gt;&#xA;                     &lt;/otm:CountryCode3Gid&gt;&#xA;                     &lt;otm:CountryCode&gt;&#xA;                        &lt;otm:CountryCode3Gid&gt;&#xA;                           &lt;otm:Gid&gt;&#xA;                              &lt;otm:Xid&gt;US&lt;/otm:Xid&gt;&#xA;                           &lt;/otm:Gid&gt;&#xA;                        &lt;/otm:CountryCode3Gid&gt;&#xA;                     &lt;/otm:CountryCode&gt;&#xA;                  &lt;/otm:Address&gt;&#xA;               &lt;/otm:Location&gt;&#xA;            &lt;/gtm:LocationRef&gt;&#xA;            &lt;gtm:PartyRemark&gt;&#xA;               &lt;otm:TransactionCode&gt;IU&lt;/otm:TransactionCode&gt;&#xA;               &lt;otm:RemarkSequence&gt;1&lt;/otm:RemarkSequence&gt;&#xA;               &lt;otm:RemarkQualifierGid&gt;&#xA;                  &lt;otm:Gid&gt;&#xA;                     &lt;otm:Xid&gt;PARTY_TYPE&lt;/otm:Xid&gt;&#xA;                  &lt;/otm:Gid&gt;&#xA;               &lt;/otm:RemarkQualifierGid&gt;&#xA;               &lt;otm:RemarkLevel&gt;3&lt;/otm:RemarkLevel&gt;&#xA;               &lt;otm:RemarkText&gt;Customer Related Address&lt;/otm:RemarkText&gt;&#xA;            &lt;/gtm:PartyRemark&gt;&#xA;             &lt;gtm:PartyRemark&gt;&#xA;                        &lt;otm:TransactionCode&gt;IU&lt;/otm:TransactionCode&gt;&#xA;                        &lt;otm:RemarkSequence&gt;2&lt;/otm:RemarkSequence&gt;&#xA;                        &lt;otm:RemarkQualifierGid&gt;&#xA;                            &lt;otm:Gid&gt;&#xA;                                &lt;otm:Xid&gt;TAX_ID&lt;/otm:Xid&gt;&#xA;                            &lt;/otm:Gid&gt;&#xA;                        &lt;/otm:RemarkQualifierGid&gt;&#xA;                        &lt;otm:RemarkLevel&gt;2&lt;/otm:RemarkLevel&gt;&#xA;                        &lt;otm:RemarkText&gt;1522070333&lt;/otm:RemarkText&gt;&#xA;                    &lt;/gtm:PartyRemark&gt;&#xA;         &lt;/gtm:GtmContact&gt;&#xA;      &lt;/GLogXMLElement&gt;&#xA;   &lt;/TransmissionBody&gt;&#xA;&lt;/Transmission&gt;"
+                                type="xml"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="{fn:concat(&#xA;$baseURL, &#xA;'/GC3/glog.integration.servlet.WMServlet'&#xA;)}"
+                                        verb="POST">
+                        <mutualAuth enabled="false">
+                           <keyStore mode="file"/>
+                           <keyStorePassword/>
+                        </mutualAuth>
+                        <otherParams>
+                           <otherParam inheritance="" name="Base64">{util:base64Encode(fn:concat($Username,':',$Password))}</otherParam>
+                        </otherParams>
+                        <httpHeaders>
+                           <header name="Content-Type">application/xml</header>
+                           <header name="Authorization">{fn:concat("Basic ",$Base64 )}</header>
+                        </httpHeaders>
+                        <body>{$i_Payload_Request}</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description=""
+                            entireResponse="true"
+                            name="resp_HTTP_Raw"
+                            type="string"/>
+                     <field description="" name="resp_SenderTransmissionNo" type="string">
+                        <xquery>{/*[local-name()='TransmissionAck']
+/*[local-name()='EchoedTransmissionHeader']
+/*[local-name()='TransmissionHeader']
+/*[local-name()='SenderTransmissionNo']/text()}</xquery>
+                     </field>
+                  </output>
+               </action>
+            </actions>
+            <objects/>
+         </businessConnector>
+      </types1:Entry>
+      <types1:GUID>9d9Pi8hQEunkCFBIHiBHU2</types1:GUID>
+      <types1:DisplayName>sc-GTM-Apis</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2026-02-24T09:43:25.403Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
