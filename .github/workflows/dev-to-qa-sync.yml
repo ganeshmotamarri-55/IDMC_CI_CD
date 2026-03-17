@@ -1,3 +1,16 @@
+jobs:
+  promote-to-qa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # This allows the 'git push' to work
+    steps:
+      - name: Checkout dev_env
+        uses: actions/checkout@v4
+        with:
+          ref: dev_env
+          path: dev_source
+          token: ${{ secrets.GITHUB_TOKEN }} # Ensure it uses the token
+
 name: IICS Dev to QA Promotion
 
 on:
