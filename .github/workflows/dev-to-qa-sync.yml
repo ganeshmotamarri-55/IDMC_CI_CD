@@ -1,26 +1,21 @@
-jobs:
-  promote-to-qa:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write  # This allows the 'git push' to work
-    steps:
-      - name: Checkout dev_env
-        uses: actions/checkout@v4
-        with:
-          ref: dev_env
-          path: dev_source
-          token: ${{ secrets.GITHUB_TOKEN }} # Ensure it uses the token
-
 name: IICS Dev to QA Promotion
 
 on:
   push:
     branches:
-      - dev_env  # Trigger when IICS Dev pushes a Check-in
+      - dev_env
+
+# Future-proof for June 2026 Node.js 24 requirement
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   promote-to-qa:
     runs-on: ubuntu-latest
+    # CRITICAL: Grant permission to push to the repo
+    permissions:
+      contents: write 
+
     steps:
       - name: Checkout dev_env
         uses: actions/checkout@v4
@@ -33,57 +28,45 @@ jobs:
         with:
           ref: qa_env
           path: qa_destination
+          # Use the default token which now has 'write' access
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Sanitize Metadata and Copy
+      - name: Sanitize and Copy
         shell: pwsh
         run: |
           $sourceDir = "dev_source"
           $targetDir = "qa_destination"
-
-          # Get all IICS files from the source branch
           $files = Get-ChildItem -Path $sourceDir -Recurse -Include *.json, *.xml -Exclude ".github/*"
 
           foreach ($file in $files) {
               $relativeRef = $file.FullName.Replace((Get-Location).Path + "/$sourceDir/", "")
               $destFilePath = Join-Path $targetDir $relativeRef
               $destFileDir = Split-Path $destFilePath
-
               if (!(Test-Path $destFileDir)) { New-Item -ItemType Directory -Path $destFileDir -Force }
 
-              # LOGIC: Scrub IDs from JSON files (Process/Guides)
               if ($file.Extension -eq ".json") {
                   $json = Get-Content $file.FullName | ConvertFrom-Json
-                  
-                  # Handle both single objects and arrays
-                  $objects = @()
-                  if ($json -is [array]) { $objects = $json } else { $objects = @($json) }
-
+                  $objects = if ($json -is [array]) { $json } else { @($json) }
                   foreach ($obj in $objects) {
                       if ($obj.id) { $obj.id = $null }
                       if ($obj.repoInfo) { $obj.repoInfo.repoHandle = $null }
                   }
-
                   $objects | ConvertTo-Json -Depth 10 | Set-Content $destFilePath
               }
-              # LOGIC: Skip Connection XMLs if they already exist in QA branch
               elseif ($file.Name -like "*.conn.xml") {
-                  if (!(Test-Path $destFilePath)) {
-                      Copy-Item $file.FullName -Destination $destFilePath
-                      Write-Host "New Connection detected: $($file.Name)"
-                  } else {
-                      Write-Host "Skipping existing connection to protect QA credentials: $($file.Name)"
-                  }
+                  if (!(Test-Path $destFilePath)) { Copy-Item $file.FullName -Destination $destFilePath }
               }
               else {
                   Copy-Item $file.FullName -Destination $destFilePath
               }
           }
 
-      - name: Push Changes to qa_env
+      - name: Push to qa_env
         working-directory: qa_destination
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Automated Promotion: Sync from dev_env (IDs sanitized)" || echo "No changes"
+          # Using '|| true' ensures the workflow doesn't fail if there are no changes
+          git commit -m "Automated Sync: dev_env to qa_env (Cleaned IDs)" || true
           git push origin qa_env
